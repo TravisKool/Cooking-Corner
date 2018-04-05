@@ -11,6 +11,6 @@ namespace RecipeServiceApi.Common.Contract.Factory
         /// Create Price
         /// </summary>
         /// <returns></returns>
-        RecipePrice Create(IRecipe recipe, IStoreSettings storeSettings);
+        IPrice Create(IRecipe recipe, IStoreSettings storeSettings);
     }
 }

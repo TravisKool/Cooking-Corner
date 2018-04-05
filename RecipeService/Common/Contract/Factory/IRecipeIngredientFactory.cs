@@ -11,6 +11,6 @@ namespace RecipeServiceApi.Common.Contract.Factory
         /// Create RecipeIngredient
         /// </summary>
         /// <returns></returns>
-        RecipeIngredient Create();
+        IRecipeIngredient Create();
     }
 }

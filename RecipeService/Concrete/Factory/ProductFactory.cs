@@ -4,7 +4,7 @@ namespace RecipeServiceApi.Common.Contract.Factory
 {
     public class ProductFactory
     {
-        public Product Create()
+        public IProduct Create()
         {
             return new Product();
         }

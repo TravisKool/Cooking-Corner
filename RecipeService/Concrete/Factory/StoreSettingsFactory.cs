@@ -4,7 +4,7 @@ namespace RecipeServiceApi.Common.Contract.Factory
 {
     public class StoreSettingsFactory
     {
-        public StoreSettings Create()
+        public IStoreSettings Create()
         {
             return new StoreSettings();
         }
