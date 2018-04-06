@@ -23,6 +23,13 @@ namespace RecipeService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Allow any origin, any header, any method and credentials to access these services
+            services.AddCors(options => options.AddPolicy("AllowAll", p =>
+                    p.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()));
+
             services.AddMvc();
         }
 
@@ -33,6 +40,9 @@ namespace RecipeService
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            // Use the AllowAll policy name when determing the details of who is allowed to access these services
+            app.UseCors("AllowAll");
 
             app.UseMvc();
         }

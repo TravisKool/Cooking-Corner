@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Web.Http;
 using RecipeServiceApi.Common.Contract;
 using RecipeServiceApi.Common.Response;
 
 namespace RecipeService.Controllers
 {
-    [Produces("application/json")]
     [Route("[controller]")]
-    public class RecipeController : Controller
+    public class RecipeController
     {
         private readonly IRecipeDataAccess _recipeDataAccess;
 
