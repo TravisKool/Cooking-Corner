@@ -3,8 +3,7 @@ using Moq;
 using RecipeServiceApi.Common.Contract.Factory;
 using RecipeServiceApi.Common.Models;
 using RecipeServiceApi.Concrete.DataAccess;
-using System;
-using System.Collections.Generic;
+using RecipeServiceApi.Concrete.Repository;
 using System.Linq;
 using UnitTests;
 
@@ -58,7 +57,7 @@ namespace IntegrationTests
             {
                 var ingredients = BuildRecipeIngredients(recipe.RecipeId);
                 //var price = BuildPrice(recipe, storeSettingsTestData.Object);
-                _mockRecipeIngredientRepository.Setup(r => r.FetchRecipeIngredients(new List<int> { recipe.RecipeId })).Returns(ingredients);
+                _mockRecipeIngredientRepository.Setup(r => r.FetchRecipeIngredients(recipe.RecipeId)).Returns(ingredients);
                 _mockPriceFactory.Setup(r => r.Create(recipe, storeSettingsTestData.Object)).Returns(new RecipePrice(recipe, storeSettingsTestData.Object));
             }
             var actual = _recipeDataAccess.FetchRecipes().ToList();

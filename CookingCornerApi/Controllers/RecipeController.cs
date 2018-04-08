@@ -1,11 +1,10 @@
-﻿using System.Web.Http;
-using RecipeServiceApi.Common.Contract;
+﻿using RecipeServiceApi.Common.Contract;
 using RecipeServiceApi.Common.Response;
+using System.Web.Http;
 
 namespace RecipeService.Controllers
 {
-    [Route("[controller]")]
-    public class RecipeController
+    public class RecipeController : ApiController
     {
         private readonly IRecipeDataAccess _recipeDataAccess;
 
@@ -15,11 +14,11 @@ namespace RecipeService.Controllers
         }
 
         [HttpGet]
-        public RecipeResponse Get()
+        public RecipeResponse FetchAllRecipes()
         {
             return new RecipeResponse
             {
-                Recipe = _recipeDataAccess.FetchRecipes()
+                Recipes = _recipeDataAccess.FetchRecipes()
             };
         }
     }

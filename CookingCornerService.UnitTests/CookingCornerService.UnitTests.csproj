@@ -70,9 +70,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CookingCornerService\CookingCornerService.csproj">
-      <Project>{0011eb61-e65c-4776-ac62-cf6248ecbac8}</Project>
-      <Name>CookingCornerService</Name>
+    <ProjectReference Include="..\FoodRecipeService\FoodRecipeService.csproj">
+      <Project>{9d0ce16e-062c-425b-a7fb-9fa2f2252ea0}</Project>
+      <Name>FoodRecipeService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

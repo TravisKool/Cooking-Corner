@@ -131,7 +131,6 @@
     <Compile Include="Concrete\Models\RecipeIngredient.cs" />
     <Compile Include="Concrete\Models\RecipePrice.cs" />
     <Compile Include="Concrete\Models\StoreSettings.cs" />
-    <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

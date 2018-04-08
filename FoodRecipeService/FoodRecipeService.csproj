@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D0CE16E-062C-425B-A7FB-9FA2F2252EA0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FoodRecipeService</RootNamespace>
+    <AssemblyName>FoodRecipeService</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Contract\DataAccess\IProductDataAccess.cs" />
+    <Compile Include="Common\Contract\DataAccess\IRecipeDataAccess.cs" />
+    <Compile Include="Common\Contract\Repository\IRecipeIngredientRepository.cs" />
+    <Compile Include="Common\Contract\Repository\IProductRepository.cs" />
+    <Compile Include="Common\Contract\Repository\IRecipeRepository.cs" />
+    <Compile Include="Common\Contract\Repository\IStoreSettingsRepository.cs" />
+    <Compile Include="Common\Contract\Factory\IPriceFactory.cs" />
+    <Compile Include="Common\Contract\Factory\IProductCategoryFactory.cs" />
+    <Compile Include="Common\Contract\Factory\IProductFactory.cs" />
+    <Compile Include="Common\Contract\Factory\IRecipeFactory.cs" />
+    <Compile Include="Common\Contract\Factory\IRecipeIngredientFactory.cs" />
+    <Compile Include="Common\Contract\Factory\IStoreSettingsFactory.cs" />
+    <Compile Include="Common\Contract\Models\IPrice.cs" />
+    <Compile Include="Common\Contract\Models\IProduct.cs" />
+    <Compile Include="Common\Contract\Models\IProductCategory.cs" />
+    <Compile Include="Common\Contract\Models\IRecipe.cs" />
+    <Compile Include="Common\Contract\Models\IRecipeIngredient.cs" />
+    <Compile Include="Common\Contract\Models\IStoreSettings.cs" />
+    <Compile Include="Common\Response\IngredientsResponse.cs" />
+    <Compile Include="Common\Response\RecipeResponse.cs" />
+    <Compile Include="Concrete\DataAccess\ProductDataAccess.cs" />
+    <Compile Include="Concrete\DataAccess\RecipeDataAccess.cs" />
+    <Compile Include="Concrete\Repository\RecipeIngredientRepository.cs" />
+    <Compile Include="Concrete\Repository\ProductRepository.cs" />
+    <Compile Include="Concrete\Repository\RecipeRepository.cs" />
+    <Compile Include="Concrete\Repository\StoreSettingsRepository.cs" />
+    <Compile Include="Concrete\Factory\PriceFactory.cs" />
+    <Compile Include="Concrete\Factory\ProductCategoryFactory.cs" />
+    <Compile Include="Concrete\Factory\ProductFactory.cs" />
+    <Compile Include="Concrete\Factory\RecipeFactory.cs" />
+    <Compile Include="Concrete\Factory\RecipeIngredientFactory.cs" />
+    <Compile Include="Concrete\Factory\StoreSettingsFactory.cs" />
+    <Compile Include="Concrete\Models\Product.cs" />
+    <Compile Include="Concrete\Models\ProductCategory.cs" />
+    <Compile Include="Concrete\Models\Recipe.cs" />
+    <Compile Include="Concrete\Models\RecipeIngredient.cs" />
+    <Compile Include="Concrete\Models\RecipePrice.cs" />
+    <Compile Include="Concrete\Models\StoreSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
