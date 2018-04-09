@@ -27,6 +27,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{F1147847-33A4-46C7-823C-A61BF0016960}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql Queries", "Sql Queries", "{53A686DA-2CEA-4E38-BFFB-5A5D0D57F69C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\CookingCorner\Sql Queries\CREATE_TABLES.sql = ..\..\CookingCorner\Sql Queries\CREATE_TABLES.sql
+		..\..\CookingCorner\Sql Queries\DROP_TABLES.sql = ..\..\CookingCorner\Sql Queries\DROP_TABLES.sql
+		..\..\CookingCorner\Sql Queries\INSERT_DATA.sql = ..\..\CookingCorner\Sql Queries\INSERT_DATA.sql
+		..\..\CookingCorner\Sql Queries\SELECT ALL RECIPE DETAILS.sql = ..\..\CookingCorner\Sql Queries\SELECT ALL RECIPE DETAILS.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
