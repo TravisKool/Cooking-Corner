@@ -56,7 +56,7 @@ namespace TestBase.Builders
 
         public RecipePrice Build()
         {
-            return new RecipePrice()
+            return new RecipePrice(null, null)
             {
                 Tax = _tax,
                 Discount = _discount,

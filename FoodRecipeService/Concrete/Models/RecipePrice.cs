@@ -13,14 +13,9 @@ namespace RecipeServiceApi.Common.Models
         public decimal Discount { get; set; }
         public decimal Total { get; set; }
 
-        public RecipePrice()
-        {
-
-        }
-
         public RecipePrice(IRecipe recipe, IStoreSettings storeSettings)
         {
-            if (recipe.RecipeId == 0) return;
+            if (recipe == null || storeSettings == null || recipe.RecipeId == 0) return;
 
             Discount = CalculateOrganicDiscount(recipe, storeSettings);
             Tax = CalculateTax(recipe, storeSettings);
