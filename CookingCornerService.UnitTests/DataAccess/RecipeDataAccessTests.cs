@@ -4,23 +4,31 @@ using RecipeServiceApi.Common.Contract.Factory;
 using RecipeServiceApi.Common.Models;
 using RecipeServiceApi.Concrete.DataAccess;
 using RecipeServiceApi.Concrete.Repository;
+using System.Collections.Generic;
 using System.Linq;
-using UnitTests;
+using TestBase.Builders;
 
-namespace IntegrationTests
+namespace RecipeService.UnitTests
 {
     [TestClass]
-    public class RecipeDataAccessTests : RecipeDataAccessTestBase
+    public class RecipeDataAccessTests
     {
         private RecipeDataAccess _recipeDataAccess;
         private Mock<IRecipeRepository> _mockRecipeRepository;
         private Mock<IRecipeIngredientRepository> _mockRecipeIngredientRepository;
         private Mock<IStoreSettingsRepository> _mockStoreSettingsRepository;
         private Mock<IPriceFactory> _mockPriceFactory;
+        private List<Recipe> _recipeTestData;
 
         [TestInitialize]
         public void Init()
         {
+            var recipe1 = new RecipeBuilder().SetupRecipe1().Build();
+            var recipe2 = new RecipeBuilder().SetupRecipe2().Build();
+            var recipe3 = new RecipeBuilder().SetupRecipe3().Build();
+
+            _recipeTestData = new List<Recipe> { recipe1, recipe2, recipe3 };
+
             _mockRecipeRepository = new Mock<IRecipeRepository>();
             _mockRecipeIngredientRepository = new Mock<IRecipeIngredientRepository>();
             _mockStoreSettingsRepository = new Mock<IStoreSettingsRepository>();
@@ -34,12 +42,11 @@ namespace IntegrationTests
         [TestMethod]
         public void ShouldFindTheCorrectCountOfRecipes()
         {
-            var recipeTestData = BuildRecipeListTestData();
-            _mockRecipeRepository.Setup(r => r.FetchRecipes()).Returns(recipeTestData);
+            _mockRecipeRepository.Setup(r => r.FetchRecipes()).Returns(_recipeTestData);
 
             var actual = _recipeDataAccess.FetchRecipes().ToList();
 
-            var expectedRecipeCount = recipeTestData.Count();
+            var expectedRecipeCount = _recipeTestData.Count();
 
             Assert.AreEqual(expectedRecipeCount, actual.Count);
         }
@@ -47,18 +54,16 @@ namespace IntegrationTests
         [TestMethod]
         public void ShouldInitializeRecipeProperties()
         {
-            var recipeTestData = BuildRecipeListTestData();
-            var storeSettingsTestData = BuildStoreSettingsTestData();
+            var storeSettingsTestData = new StoreSettingsBuilder().BuildStandardStoreSettings();
 
-            _mockRecipeRepository.Setup(r => r.FetchRecipes()).Returns(recipeTestData);
+            _mockRecipeRepository.Setup(r => r.FetchRecipes()).Returns(_recipeTestData);
 
-            _mockStoreSettingsRepository.Setup(s => s.FetchStoreSettings()).Returns(storeSettingsTestData.Object);
-            foreach (var recipe in recipeTestData)
+            _mockStoreSettingsRepository.Setup(s => s.FetchStoreSettings()).Returns(storeSettingsTestData);
+            foreach (var recipe in _recipeTestData)
             {
-                var ingredients = BuildRecipeIngredients(recipe.RecipeId);
-                //var price = BuildPrice(recipe, storeSettingsTestData.Object);
+                var ingredients = _recipeTestData.Single(r => r.RecipeId == recipe.RecipeId).Ingredients;
                 _mockRecipeIngredientRepository.Setup(r => r.FetchRecipeIngredients(recipe.RecipeId)).Returns(ingredients);
-                _mockPriceFactory.Setup(r => r.Create(recipe, storeSettingsTestData.Object)).Returns(new RecipePrice(recipe, storeSettingsTestData.Object));
+                _mockPriceFactory.Setup(r => r.Create(recipe, storeSettingsTestData)).Returns(new RecipePrice(recipe, storeSettingsTestData));
             }
             var actual = _recipeDataAccess.FetchRecipes().ToList();
 

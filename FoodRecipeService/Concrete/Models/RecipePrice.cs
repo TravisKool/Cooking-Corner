@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 
 namespace RecipeServiceApi.Common.Models
@@ -13,6 +12,11 @@ namespace RecipeServiceApi.Common.Models
         public decimal Tax { get; set; }
         public decimal Discount { get; set; }
         public decimal Total { get; set; }
+
+        public RecipePrice()
+        {
+
+        }
 
         public RecipePrice(IRecipe recipe, IStoreSettings storeSettings)
         {
@@ -38,7 +42,7 @@ namespace RecipeServiceApi.Common.Models
             var discount = recipe.Ingredients
                .Where(i => i.Product.IsOrganic)
                .Sum(i => i.Product.Price * i.Quantity) * (storeSettings.WellnessDiscountPercent / 100);
-            return SetupRounding(discount, 1);
+            return PerformRounding(discount, 1);
         }
 
         /// <summary>
@@ -51,7 +55,7 @@ namespace RecipeServiceApi.Common.Models
             var total = recipe.Ingredients
                 .Sum(i => (i.Product.Price * i.Quantity)) - Discount + Tax;
 
-            return SetupRounding(total, 1);
+            return PerformRounding(total, 1);
         }
 
         /// <summary>
@@ -65,7 +69,7 @@ namespace RecipeServiceApi.Common.Models
             var tax = recipe.Ingredients
                 .Where(i => i.Product.ProductCategory.IsTaxable)
                 .Sum(i => i.Product.Price * i.Quantity) * (storeSettings.TaxRatePercent / 100);
-            return SetupRounding(tax, storeSettings.RoundingInCents);
+            return PerformRounding(tax, storeSettings.RoundingInCents);
         }
 
         /// <summary>
@@ -75,9 +79,9 @@ namespace RecipeServiceApi.Common.Models
         /// <param name="amountInDollars"></param>
         /// <param name="roundingInCents"></param>
         /// <returns>The rounded dollar amount</returns>
-        private decimal SetupRounding(decimal amountInDollars, int roundingInCents)
+        private decimal PerformRounding(decimal amountInDollars, int roundingInCents)
         {
-            return RoundUp(amountInDollars * 100, roundingInCents) / 100;
+            return decimal.Round(RoundUp(amountInDollars * 100, roundingInCents) / 100, 2);
         }
 
         /// <summary>

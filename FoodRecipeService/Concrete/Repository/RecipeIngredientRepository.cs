@@ -30,6 +30,7 @@ namespace RecipeServiceApi.Concrete.Repository
                             p.Name AS ProductName,
                             p.Description,
                             p.Price,
+                            p.Units AS ProductUnits,
                             p.IsOrganic,
                             p.ProductCategoryId,
 							ri.Quantity,
@@ -67,6 +68,7 @@ namespace RecipeServiceApi.Concrete.Repository
                         product.Price = decimal.Parse(reader["Price"].ToString());
                         product.IsOrganic = bool.Parse(reader["IsOrganic"].ToString());
                         product.ProductCategory = productCategory;
+                        product.Units = reader["ProductUnits"].ToString();
 
                         var recipeIngredient = _recipeIngredientFactory.Create();
                         recipeIngredient.Product = product;

@@ -25,5 +25,8 @@ namespace RecipeServiceApi.Common.Models
         /// Units
         /// </summary>
         string Units { get; set; }
+
+        //
+        bool Equals(object obj);
     }
 }
